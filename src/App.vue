@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <Container >
     <template v-slot:title>
       <Title text="The Title" ></Title>
     </template>
@@ -7,7 +7,7 @@
       <p>This is a button ^^</p>
     </template>
   </Container>
-  <h1 @click="test()" :class="classVal">{{text}}</h1>
+  <h1 @click="test()" :class="classVal" :style="cssVars">{{text}}</h1>
 </template>
 
 <script>
@@ -23,15 +23,30 @@ export default {
     Container,
     Title
   },
+  watch: {
+    text (newText, oldText) {
+      console.log('YOU CLICKED SHIT')
+      console.log(newText)
+      console.log(oldText)
+    }
+  },
   data () {
     return {
       text: 'Hello World!',
-      classVal: 'title'
+      classVal: 'title',
+      textSize: '5rem'
+    }
+  },
+  computed: {
+    cssVars () {
+      return {
+        '--textSize': this.textSize
+      }
     }
   },
   methods: {
     test () {
-      console.log(this)
+      this.text = 'Clicked'
     }
 
   }
@@ -39,8 +54,12 @@ export default {
 </script>
 
 <style scoped>
+  * {
+    --theSize: 1rem;
+    }
+
   .title {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 3rem;
+    font-size: var(--theSize);
   }
 </style>
