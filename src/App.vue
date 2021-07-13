@@ -15,14 +15,20 @@ import Container from './components/Container.vue'
 import Title from './components/Title.vue'
 
 export default {
+  // Lifecycle hook. This is called first (before component is setup)
   setup (props, context) {
     console.log(`Props: ${props}`)
     console.log(`Context: ${context}`)
+  },
+  // lifecycle hook. this is called after the component is created and rendered
+  created () {
+    console.log('Component created and rendered')
   },
   components: {
     Container,
     Title
   },
+  // Watch data. When data changed, call associated same name function
   watch: {
     text (newText, oldText) {
       console.log('YOU CLICKED SHIT')
