@@ -20,9 +20,13 @@ export default {
     console.log(`Props: ${props}`)
     console.log(`Context: ${context}`)
   },
-  // lifecycle hook. this is called after the component is created and rendered
+  // lifecycle hook. this is called after the component is created and set up but not yet mounted into DOM
   created () {
     console.log('Component created and rendered')
+  },
+  // lifecycle hook. this is called after the component is mounted into DOM
+  mounted () {
+    console.log('Mounted')
   },
   components: {
     Container,
@@ -52,7 +56,12 @@ export default {
   },
   methods: {
     test () {
-      this.text = 'Clicked'
+      let text = ''
+      for (let i = 0; i < 10; i++) {
+        const num = (Math.floor((Math.random() * 26 + 65))) // Random Capital letter
+        text += String.fromCharCode(num)
+      }
+      this.text = text
     }
 
   }
@@ -66,6 +75,6 @@ export default {
 
   .title {
     font-family: 'Courier New', Courier, monospace;
-    font-size: var(--theSize);
+    font-size: var(--textSize);
   }
 </style>
