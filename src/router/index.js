@@ -1,6 +1,6 @@
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home'
-import Contact from '../views/contact'
+import Contact from '../views/Contact'
 
 const routes = [
   {
@@ -16,8 +16,9 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
+const history = createWebHistory()
+const router = createRouter({
+  routes,
+  history
 })
 export default router
